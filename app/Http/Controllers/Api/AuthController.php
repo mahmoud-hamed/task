@@ -68,10 +68,9 @@ class AuthController extends Controller
             $user = $this->userRepository->findByEmail($request->email);
     
             if ($user->is_verified === 1) {
-                $tokenResult = $user->createToken('AuthToken');
-                $token = $tokenResult->plainTextToken; // Extract the plain text token
+              
+                $token = $user->createToken('AuthToken')->plainTextToken; 
     
-                return response()->json(['token' => $token , 'user' => $user]);
 
                 return ResponseJson(1 , 'Login successfully' , ['token' => $token , 'user' => $user]); 
 
